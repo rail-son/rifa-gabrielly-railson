@@ -119,14 +119,14 @@ No painel `/admin` → aba **⚙️ Config**, você pode editar:
 
 ### Alterar chave PIX
 
-A chave PIX padrão é `+5534991737875` (telefone no formato E.164).
+A chave PIX padrão é `+5534991737555` (telefone no formato E.164).
 
 Se a sua chave for diferente (CPF, e-mail, chave aleatória), atualize:
 1. No painel admin → Config → Chave PIX
 2. E também em `src/lib/pix.js` na função `generateRifaPix()` — o parâmetro `key`
 
 **Formatos aceitos pelo PIX:**
-- Telefone: `+5534991737875`
+- Telefone: `+5534991737555`
 - CPF: `12345678901`
 - E-mail: `railson@email.com`
 - Chave aleatória: `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`
@@ -251,4 +251,4 @@ No painel admin, clique em **🎲 Sortear** no topo. A animação sorteará um n
 
 ---
 
-*Feito com ❤️ para Gabrielly & Railson — que o casamento seja lindo!*
+*Feito por Railson*
