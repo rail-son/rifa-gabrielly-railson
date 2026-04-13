@@ -149,6 +149,18 @@ export default function Home() {
   const [loading, setLoading]               = useState(true);
   const [error, setError]                   = useState('');
   const gridRef    = useRef(null);
+  const [gridVisible, setGridVisible] = useState(false);
+
+  // Observa se a grade está visível na tela
+  useEffect(() => {
+    if (!gridRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setGridVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    observer.observe(gridRef.current);
+    return () => observer.disconnect();
+  }, [loading]); // re-observa após o loading terminar
 
   // ── FIX: use a ref to track modal state inside the realtime callback.
   // This avoids the callback removing the user's own numbers from selectedNumbers
@@ -491,12 +503,26 @@ export default function Home() {
         </div>
       </div>
 
-      {totalSelected === 0 && (
+      {totalSelected === 0 && !gridVisible && (
         <div className="fixed bottom-6 left-0 right-0 z-40 flex justify-center px-4 pointer-events-none">
-          <button onClick={() => gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
-            className="pointer-events-auto px-8 py-3.5 rounded-2xl font-body font-bold text-charcoal text-sm shadow-xl transition-all"
-            style={{ background: 'linear-gradient(135deg, #c9a84c, #e0c578)' }}>
-            ♥ Escolher números
+          <button
+            onClick={() => gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+            className="pointer-events-auto font-body font-bold text-white text-sm shadow-2xl transition-all duration-200 flex items-center gap-2"
+            style={{
+              background: 'linear-gradient(135deg, #dc2743, #cc2366)',
+              padding: '14px 28px',
+              borderRadius: 50,
+              boxShadow: '0 6px 24px rgba(220,39,67,0.5)',
+              letterSpacing: '0.02em',
+              border: '2px solid rgba(255,255,255,0.25)',
+            }}
+            onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
+            onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+          >
+            <svg viewBox="0 0 100 90" fill="white" style={{ width: 16, height: 16 }}>
+              <path d="M50 82 C50 82 8 55 8 28 C8 14 19 5 30 5 C38 5 44 9 50 16 C56 9 62 5 70 5 C81 5 92 14 92 28 C92 55 50 82 50 82Z" />
+            </svg>
+            Escolher meus números
           </button>
         </div>
       )}
