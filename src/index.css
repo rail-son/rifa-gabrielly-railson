@@ -5,11 +5,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    color-scheme: only light;
   }
 
   body {
     @apply bg-cream font-body text-charcoal;
     -webkit-font-smoothing: antialiased;
+    forced-color-adjust: none;
   }
 
   * {
