@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import NumberGrid from '../components/NumberGrid.jsx';
 import PaymentModal from '../components/PaymentModal.jsx';
+import StoryAvatar from '../components/StoryViewer.jsx';
 import { fetchNumbers, fetchSettings } from '../lib/supabase.js';
 
 // ─── Floral decoration SVG ─────────────────────────────────────────────────
@@ -288,22 +289,9 @@ export default function Home() {
             </p>
           </div>
 
+          {/* Story avatar — clique para ver as fotos */}
           <div className="flex justify-center mb-6">
-            <div className="relative" style={{
-              width: 180, height: 180, borderRadius: '50%', padding: 4,
-              background: 'linear-gradient(135deg, #c9a84c, #e0c578, #c9a84c)',
-              boxShadow: '0 8px 32px rgba(201,168,76,0.3)',
-            }}>
-              <img
-                src="/FOTO_DO_CASAL.jpeg"
-                alt="Gabrielly e Railson"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', border: '3px solid #f5f0e8' }}
-                onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
-              />
-              <div style={{ display: 'none', width: '100%', height: '100%', borderRadius: '50%', background: '#5c6b4a', alignItems: 'center', justifyContent: 'center', fontSize: 48, border: '3px solid #f5f0e8' }}>
-                💑
-              </div>
-            </div>
+            <StoryAvatar size={180} />
           </div>
 
           <p className="text-center font-body text-charcoal/70 leading-relaxed mx-auto"
