@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 // ─── Fotos ─────────────────────────────────────────────────────────────────
-const ALL_PHOTOS = Array.from({ length: 10 }, (_, i) => `/stories/${i + 1}.JPEG`);
+const ALL_PHOTOS = Array.from({ length: 10 }, (_, i) => `/stories/${i + 1}.jpeg`);
 
 function shuffle(arr) {
   const a = [...arr];
